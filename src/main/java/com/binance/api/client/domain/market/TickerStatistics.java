@@ -70,6 +70,8 @@ public class TickerStatistics {
    */
   private String volume;
 
+  private String quoteVolume;
+
   /**
    * Open time.
    */
@@ -231,6 +233,14 @@ public class TickerStatistics {
 	this.symbol = symbol;
   }
 
+  public String getQuoteVolume() {
+    return quoteVolume;
+  }
+
+  public void setQuoteVolume(String quoteVolume) {
+    this.quoteVolume = quoteVolume;
+  }
+
   @Override
   public String toString() {
     return new ToStringBuilder(this, BinanceApiConstants.TO_STRING_BUILDER_STYLE)
@@ -246,6 +256,7 @@ public class TickerStatistics {
         .append("highPrice", highPrice)
         .append("lowPrice", lowPrice)
         .append("volume", volume)
+        .append("quoteVolume", quoteVolume)
         .append("openTime", openTime)
         .append("closeTime", closeTime)
         .append("firstId", firstId)

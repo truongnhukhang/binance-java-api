@@ -26,7 +26,8 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     public BinanceApiWebSocketClientImpl() {
         Dispatcher d = new Dispatcher();
-        d.setMaxRequestsPerHost(100);
+        d.setMaxRequestsPerHost(150);
+        d.setMaxRequests(150);
         this.client = new OkHttpClient.Builder().dispatcher(d).build();
     }
 
@@ -37,7 +38,7 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     @Override
     public Closeable onCandlestickEvent(String symbol, CandlestickInterval interval, BinanceApiCallback<CandlestickEvent> callback) {
-        final String channel = String.format("%s@kline_%s", symbol, interval.getIntervalId());
+        final String channel = String.format("%s@kline_%s.b10", symbol, interval.getIntervalId());
         return createNewWebSocket(channel, new BinanceApiWebSocketListener<>(callback, CandlestickEvent.class));
     }
 
