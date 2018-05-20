@@ -16,6 +16,7 @@ import okhttp3.WebSocket;
 
 import java.io.Closeable;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Binance API WebSocket client implementation using OkHttp.
@@ -26,9 +27,11 @@ public class BinanceApiWebSocketClientImpl implements BinanceApiWebSocketClient,
 
     public BinanceApiWebSocketClientImpl() {
         Dispatcher d = new Dispatcher();
-        d.setMaxRequestsPerHost(150);
-        d.setMaxRequests(150);
-        this.client = new OkHttpClient.Builder().dispatcher(d).build();
+        d.setMaxRequestsPerHost(500);
+        d.setMaxRequests(500);
+        this.client = new OkHttpClient.Builder().readTimeout(6000,  TimeUnit.MILLISECONDS)
+            .writeTimeout(6000,  TimeUnit.MILLISECONDS)
+            .connectTimeout(6000,  TimeUnit.MILLISECONDS).dispatcher(d).build();
     }
 
     public Closeable onDepthEvent(String symbol, BinanceApiCallback<DepthEvent> callback) {
