@@ -51,16 +51,16 @@ public class BinanceApiWebSocketListener<T> extends WebSocketListener {
 
   @Override
   public void onClosing(final WebSocket webSocket, final int code, final String reason) {
-    System.out.println("Close reason : " + reason);
-    System.out.println("Close code : " + code);
-    closing = true;
   }
 
   @Override
   public void onClosed(WebSocket webSocket, int code, String reason) {
-    System.out.println("Close reason : " + reason);
-    System.out.println("Close code : " + code);
-
+    if(code==1000 && reason.equals("self")) {
+      closing = true;
+    } else {
+      closing = false;
+      onFailure(webSocket,new Throwable("dont know error"),null);
+    }
   }
 
   @Override
