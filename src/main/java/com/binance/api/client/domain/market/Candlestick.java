@@ -140,4 +140,10 @@ public class Candlestick {
         .append("takerBuyQuoteAssetVolume", takerBuyQuoteAssetVolume)
         .toString();
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    Candlestick candlestick = (Candlestick) obj;
+    return this.openTime.equals(candlestick.getOpenTime()) && this.closeTime.equals(candlestick.getCloseTime());
+  }
 }
