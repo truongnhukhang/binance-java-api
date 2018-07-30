@@ -57,6 +57,7 @@ public class BinanceApiWebSocketListener<T> extends WebSocketListener {
   public void onClosed(WebSocket webSocket, int code, String reason) {
     if(code==1000 && reason.equals("self")) {
       closing = true;
+      callback.onClose();
     } else {
       closing = false;
       onFailure(webSocket,new Throwable("dont know error"),null);
