@@ -5,5 +5,6 @@ package com.binance.api.client.domain.general;
  */
 public enum RateLimitType {
   REQUESTS,
+  REQUEST_WEIGHT,
   ORDERS
 }
