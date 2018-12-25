@@ -14,6 +14,8 @@ public class RateLimit {
 
   private Integer limit;
 
+  private Integer intervalNum;
+
   public RateLimitType getRateLimitType() {
     return rateLimitType;
   }
@@ -36,6 +38,14 @@ public class RateLimit {
 
   public void setLimit(Integer limit) {
     this.limit = limit;
+  }
+
+  public Integer getIntervalNum() {
+    return intervalNum;
+  }
+
+  public void setIntervalNum(Integer intervalNum) {
+    this.intervalNum = intervalNum;
   }
 
   @Override
